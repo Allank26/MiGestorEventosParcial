@@ -1,0 +1,23 @@
+<!-- templates/registration/login.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+</head>
+<body>
+    <h2>Iniciar Sesión</h2>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Ingresar</button>
+    </form>
+    {% if form.errors %}
+    <p>El usuario o la contraseña son incorrectos.</p>
+    {% endif %}
+    <p><a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a></p>
+</body>
+</html>
